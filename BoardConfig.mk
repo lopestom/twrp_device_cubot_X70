@@ -59,12 +59,12 @@ TARGET_NO_KERNEL := true
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
 
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_KERNEL_BASE := 0x3fff8000
+BOARD_VENDOR_BASE := 0x3fff8000
 BOARD_PAGE_SIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_TAGS_OFFSET := 0x07c88000
-BOARD_BOOT_HEADER_VERSION := 4
+BOARD_HEADER_VERSION := 4
 # https://android.googlesource.com/platform/system/tools/mkbootimg/+/refs/heads/master/include/bootimg/bootimg.h#346
 #  https://source.android.com/docs/core/architecture/partitions/vendor-boot-partitions?hl=pt-br#vendor-boot-partition-v4
 ## Info from Android Image Kitchen - UnpackImg Script - by osm0sis
@@ -79,7 +79,7 @@ BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_PAGE_SIZE) --board ""
 BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 
 BOARD_KERNEL_SEPARATED_DTBO := true
@@ -120,7 +120,6 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
-TARGET_COPY_OUT_SYSTEM := system
 TARGET_COPY_OUT_VENDOR := vendor
 
 # From lopestom -- vendor_dlkm & odm_dlkm partition
