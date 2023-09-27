@@ -1,20 +1,21 @@
 ### TWRP device tree for Cubot X70 - kernel 5.10.136
 
-
-
 This branch android-12.1 has ***encrypt/decrypt*** files and option to more test with that. 
 [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ### Firmware version:
-android_device_cubot_X70 - CUBOT_X70_D061C_V14_20230613
-files not uploaded!
+CUBOT_X70_D061C_V14_20230613.zip - CUBOT_X70_D061C_V14_20230613
+```
+ro.custom.build.product=m118d-cq-D061-256g12g-fhd-bom6-t0-cts-eu
+ro.system.custom.version=CQD061_DZ_M118d_CUBOT_EEA_X70_V14_20230613
+```
 
 ## Device
 
 Specs [here](https://www.gsmarena.com/cubot_x70-12305.php)
 Description | Specification
 -------:|:-------------------------
-Shipped Android Version | 12_13
+Shipped Android Version | 12 update to 13
 Internal Storage | 256 GB (UFS 2.1)
 Display | 6.58 inches, 60/120 hz
 Resolution | 1080 x 2408 pixels, 20:9 ratio (~401 ppi density)
@@ -23,7 +24,7 @@ Resolution | 1080 x 2408 pixels, 20:9 ratio (~401 ppi density)
 
 ### Status
 
-The tester only install `vendor_boot-X70-20230925.img` file to know if working.
+The tester only install `vendor_boot-X70-2023mmdd.img` file to know if working.
 <details><summary>History - Click to open</summary>
 <p>
 Some tests was made:
@@ -31,13 +32,13 @@ Some tests was made:
 ### First img Test
 
 * Initial DT: 2023-08-22
-   Compiled img file 2023-09-24 and tested in 2023-09-25
+   Compiled img file 2023-09-24 and tested in 2023-09-27
 
 - MT6789 - A12
   - Status: booted??
   - [X] booted
 
-   - vendor_boot-LG8n-20230728.img => Working?? Not working?
+   - vendor_boot-LG8n-20230927.img => Working?? Not working?
   - [?] Working
   - [?] CPU/temperature correct
   - [?] Vibrator module not work

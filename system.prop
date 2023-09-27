@@ -1,42 +1,42 @@
+# X70_EEA start
+ro.vendor.mtk_fast_charging_support=1
 # feat by lopestom
 # USB MTP
 ro.sys.usb.storage.type=mtp
 
+# identity
+Build.BRAND=MTK
+#ro.custom.build.product=m118d-cq-D061-256g12g-fhd-bom6-t0-cts-eu
+#ro.system.custom.version=CQD061_DZ_M118d_CUBOT_EEA_X70_V14_20230613
+#ro.vendor.mgk_name=mgk_64_entry_level_k510
+#ro.vendor.branchname=6789
+
 # Crypto
 ro.crypto.volume.filenames_mode=aes-256-cts
 
-# TEE
-ro.vendor.mtk_tee_gp_support=1
-ro.vendor.mtk_microtrust_tee_support=1
+# Trustkernel & TEE & Gatekeeper & Keymaster
+ro.vendor.mtk_trustkernel_tee_support=1
 ro.vendor.mtk_svp_on_mtee_support=2
-
-# Gatekeeper
-ro.hardware.gatekeeper=beanpod
+#ro.yft_trustkernel_tee_support=1
 
 # Keymaster - hardware
-ro.hardware.kmsetkey=beanpod
-ro.hardware.gatekeeper=beanpod
+ro.hardware.kmsetkey=trustkernel
+ro.hardware.gatekeeper=trustkernel
 ro.hardware.egl=meow
+ro.hardware.vulkan=mali
+
+# HideReflashTWRP
+ro.twrp.vendor_boot=true
+
+# Platform
+ro.vendor.mediatek.platform=MT6789
 
 # Storage mode
 ro.vendor.mtk_f2fs_enable=1
 ro.vendor.mtk_emmc_support=1
 
-# Platform
-ro.vendor.mediatek.platform=MT6789
-
-# identity
-Build.BRAND=MTK
-
-# Crypto
-ro.crypto.volume.filenames_mode=aes-256-cts
-#
-ro.crypto.metadata.enabled=true
-ro.crypto.support_metadata_encrypt=true
-ro.crypto.uses_fs_ioc_add_encryption_key=true
-ro.crypto.volume.metadata.method=dm-default-key
-ro.crypto.dm_default_key.options_format.version=2
-ro.crypto.volume.options=::v2
-
-
-
+persist.adb.nonblocking_ffs=0
+external_storage.projid.enabled=1
+external_storage.casefold.enabled=1
+external_storage.sdcardfs.enabled=0
+# X70_EEA end

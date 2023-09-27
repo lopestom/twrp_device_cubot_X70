@@ -30,7 +30,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := \
-    vendor_boot \
+    boot \
     dtbo \
     system \
     product \
@@ -41,7 +41,8 @@ AB_OTA_PARTITIONS := \
     vbmeta \
     vbmeta_system \
     vbmeta_vendor
-
+    
+    
 # Update engine
 PRODUCT_PACKAGES += \
     checkpoint_gc \
@@ -64,8 +65,7 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Boot control HAL - Bootctrl
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-mtkimpl.recovery \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.2-mtkimpl.recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctrl
@@ -107,18 +107,10 @@ PRODUCT_PACKAGES += \
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hardware.keymaster@4.1
-
-# libion & libxml2
-TARGET_RECOVERY_DEVICE_MODULES += libion
-
-RECOVERY_LIBRARY_SOURCE_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
-
+    
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_X70
 TARGET_RECOVERY_DEVICE_MODULES := libinit_X70
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
-
-# Hide Reflash TWRP
-PRODUCT_PROPERTY_OVERRIDES += ro.twrp.vendor_boot=true

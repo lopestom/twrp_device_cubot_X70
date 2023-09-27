@@ -16,6 +16,9 @@
 
 DEVICE_PATH := device/cubot/X70
 
+# Build Hack
+BUILD_BROKEN_DUP_RULES := true
+
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
@@ -24,7 +27,7 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := cortex-a55
+TARGET_CPU_VARIANT := cortex-a76
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
@@ -38,9 +41,9 @@ TARGET_SUPPORTS_64_BIT_APPS := true
 TARGET_IS_64_BIT := true
 
 # Assertation
-TARGET_OTA_ASSERT_DEVICE := X70,X70_EEA
+TARGET_OTA_ASSERT_DEVICE := X70
 
-# Bootloader - CUBOT_X70_D061C_V14_20230613
+# Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := CUBOT
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
@@ -49,19 +52,19 @@ TARGET_USES_UEFI := true
 TARGET_BOARD_PLATFORM := mt6789
 
 # Kernel
-#TARGET_KERNEL_ARCH := arm64
-#TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 
 TARGET_NO_KERNEL := true
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
 
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_VENDOR_BASE := 0x3fff8000
+BOARD_KERNEL_BASE := 0x3fff8000
 BOARD_PAGE_SIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x26f08000
 BOARD_TAGS_OFFSET := 0x07c88000
-BOARD_HEADER_VERSION := 4
+BOARD_BOOT_HEADER_VERSION := 4
 # https://android.googlesource.com/platform/system/tools/mkbootimg/+/refs/heads/master/include/bootimg/bootimg.h#346
 #  https://source.android.com/docs/core/architecture/partitions/vendor-boot-partitions?hl=pt-br#vendor-boot-partition-v4
 ## Info from Android Image Kitchen - UnpackImg Script - by osm0sis
@@ -76,7 +79,7 @@ BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_PAGE_SIZE) --board ""
 BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 
 BOARD_KERNEL_SEPARATED_DTBO := true
@@ -93,26 +96,35 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 
 #A11 DECRYPTION
-#BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
-#    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
-#    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
 
 # Partitions
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
 BOARD_SUPER_PARTITION_SIZE := 9663676416
 BOARD_SUPER_PARTITION_GROUPS := main
-BOARD_MAIN_SIZE := 9642704896 # (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB
-BOARD_MAIN_PARTITION_LIST := system product vendor vendor_dlkm odm odm_dlkm
+BOARD_MAIN_SIZE := 9659482112 # (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB
+BOARD_MAIN_PARTITION_LIST := system product vendor odm
 
+TARGET_COPY_OUT_ODM := odm
+TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_SYSTEM := system
+TARGET_COPY_OUT_VENDOR := vendor
+
+#BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
+#BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
+#BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+#BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
-TARGET_COPY_OUT_VENDOR := vendor
 
 # From lopestom -- vendor_dlkm & odm_dlkm partition
 # Reference: https://source.android.com/docs/core/architecture/partitions/vendor-odm-dlkm-partition#build-support
@@ -126,10 +138,6 @@ BOARD_USES_ODM_DLKMIMAGE := true
 BOARD_ODM_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_ODM_DLKM := odm_dlkm
 
-# Metadata
-BOARD_USES_METADATA_PARTITION := true
-BOARD_ROOT_EXTRA_FOLDERS += metadata
-
 # Recovery
 TARGET_NO_RECOVERY := true
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -138,7 +146,6 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
-
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 
 RECOVERY_SDCARD_ON_DATA := true
@@ -151,7 +158,7 @@ BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
 # This is related to OpenGL Performance. Do we need this?
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
-# Charger Mode
+# Charger Mode - Let charger mode enter suspend
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
@@ -201,36 +208,37 @@ PLATFORM_VERSION := 99.87.36
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # Stock info
-#PLATFORM_SECURITY_PATCH := 2022-09-01
+#PLATFORM_SECURITY_PATCH := 2023-06-05
 #PLATFORM_VERSION := 12
 
 # Tools
-TW_INCLUDE_FASTBOOTD := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP :=true
-#TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_REPACKTOOLS := true
 
 # TWRP Configuration
-TW_DEFAULT_LANGUAGE := ru
+TW_DEFAULT_LANGUAGE := en
 TW_INPUT_BLACKLIST := hbtp_vm
 TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 100
-TW_DEVICE_VERSION := Cubot X70 by LobsterOK(4pda) feat lopestom
-TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone28/temp
+TW_DEFAULT_BRIGHTNESS := 130
+TW_DEVICE_VERSION := Cubot X70_V14 - LobsterOK(4pda) feat lopestom
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone29/temp
+TW_NO_HAPTICS := true
 TW_EXTRA_LANGUAGES := false
 TARGET_USES_MKE2FS := true
 
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_NO_SCREEN_BLANK := true
-#TW_SCREEN_BLANK_ON_BOOT := true
+TW_SCREEN_BLANK_ON_BOOT := true
 TW_HAS_MTP := true
 
 # Vibrator
-TW_LOAD_VENDOR_MODULES := "mtk_panel_ext.ko panel-hf-ft8722-cphy-vdo-qm.ko panel-wcl-icnl9922c-cphy-vdo-xp.ko panel-wcl-icnl9922c-dphy-vdo-xp.ko"
+#TW_LOAD_VENDOR_MODULES := "haptic.ko"
+#TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+#TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
 
-# Vibrator
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
+# Attempt fix Touch Screen
+TW_LOAD_VENDOR_MODULES := "mtk_panel_ext.ko panel-hf-ft8722-cphy-vdo-qm.ko panel-wcl-icnl9922c-cphy-vdo-xp.ko panel-wcl-icnl9922c-dphy-vdo-xp.ko"
 
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
