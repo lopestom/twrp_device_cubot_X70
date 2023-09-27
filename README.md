@@ -1,6 +1,7 @@
 ### TWRP device tree for Cubot X70 - kernel 5.10.136
 
 This branch android-12.1 has ***encrypt/decrypt*** files and option to more test with that. 
+
 [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ### Firmware version:
