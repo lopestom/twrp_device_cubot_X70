@@ -33,13 +33,13 @@ Some tests was made:
 ### First img Test
 
 * Initial DT: 2023-08-22
-   Compiled img file 2023-09-24 and tested in 2023-09-27
+   Compiled img file 2023-09-27 and tested in 2023-09-2?
 
 - MT6789 - A12
   - Status: booted??
   - [X] booted
 
-   - vendor_boot-LG8n-20230927.img => Working?? Not working?
+   - vendor_boot-X70-2023mmdd.img => Working?? Not working?
   - [?] Working
   - [?] CPU/temperature correct
   - [?] Vibrator module not work
