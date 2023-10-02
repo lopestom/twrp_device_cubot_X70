@@ -5,10 +5,10 @@ This branch android-12.1 has ***encrypt/decrypt*** files and option to more test
 [![GPLv3+](https://img.shields.io/badge/license-GPLv3+-red.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ### Firmware version:
-CUBOT_X70_D061C_V14_20230613.zip - CUBOT_X70_D061C_V14_20230613
+CUBOT_X70_D061C_V19_20230912.zip - CUBOT_X70_D061C_V19_20230912
 ```
 ro.custom.build.product=m118d-cq-D061-256g12g-fhd-bom6-t0-cts-eu
-ro.system.custom.version=CQD061_DZ_M118d_CUBOT_EEA_X70_V14_20230613
+ro.system.custom.version=CQD061_DZ_M118d_CUBOT_EEA_X70_V19_20230912
 ```
 
 ## Device
@@ -58,7 +58,7 @@ Some tests was made:
 
 #### Big thanks to:
 
-- [user from 4pda](https://4pda.to/forum/index.php?showuser=11403409)
+- [LobsterOK from 4pda](https://4pda.to/forum/index.php?showuser=180853) aka @DeadPo01
 - [TeamWin](https://github.com/TeamWin) for TWRP SC.
 * TWRP version 3.7.0_12 *
 
