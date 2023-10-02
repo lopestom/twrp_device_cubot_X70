@@ -92,7 +92,7 @@ jobs:
       env:
        GITHUB_TOKEN: ${{ secrets.TEST }}
       with:
-       tag_name: CUBOT_X70-V14
+       tag_name: CUBOT_X70-V19
        name: TWRP37x_12
        files: | 
          twrp/out/target/product/X70/*boot*.img
