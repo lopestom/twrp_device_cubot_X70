@@ -50,9 +50,11 @@ Some tests was made:
 <details><summary>TWRP Pictures - Click to open</summary>
 <p>
 
-![Backup](https://github.com/lopestom/)
-![Menu](https://github.com/lopestom/)
-
+![Menu](https://github.com/lopestom/twrp_device_cubot_X70/releases/download/CUBOT_X70-V19_NoCrypt/Screenshot_2023-10-20-02-23-56_resized.png)
+![Backup](https://github.com/lopestom/twrp_device_cubot_X70/releases/download/CUBOT_X70-V19_NoCrypt/Screenshot_2023-10-20-02-21-15_resized.png)
+![Advanced](https://github.com/lopestom/twrp_device_cubot_X70/releases/download/CUBOT_X70-V19_NoCrypt/Screenshot_2023-10-20-02-21-42_resized.png)
+![Wipe](https://github.com/lopestom/twrp_device_cubot_X70/releases/download/CUBOT_X70-V19_NoCrypt/Screenshot_2023-10-20-02-24-07_resized.png)
+![Storage](https://github.com/lopestom/twrp_device_cubot_X70/releases/download/CUBOT_X70-V19_NoCrypt/Screenshot_2023-10-20-02-21-31_resized.png)
 </p>
 </details>
 
