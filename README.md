@@ -40,9 +40,9 @@ Some tests was made:
   - [X] booted
 
    - vendor_boot-X70-2023mmdd.img => Working?? Not working?
-  - [?] Working
-  - [?] CPU/temperature correct
-  - [?] Vibrator module not work
+  - [X] Working
+  - [N] CPU/temperature correct
+  - [N] Vibrator module not work
 
 </p>
 </details>
