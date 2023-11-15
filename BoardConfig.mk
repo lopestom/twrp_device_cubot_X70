@@ -239,7 +239,8 @@ TW_HAS_MTP := true
 #TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
 
 # Attempt fix Touch Screen
-TW_LOAD_VENDOR_MODULES := "mtk_panel_ext.ko panel-hf-ft8722-cphy-vdo-qm.ko panel-wcl-icnl9922c-cphy-vdo-xp.ko panel-wcl-icnl9922c-dphy-vdo-xp.ko"
+TW_LOAD_VENDOR_MODULES := "chipone_tddi_spi.ko"
+#TW_LOAD_VENDOR_MODULES := "mtk_panel_ext.ko panel-hf-ft8722-cphy-vdo-qm.ko panel-wcl-icnl9922c-cphy-vdo-xp.ko panel-wcl-icnl9922c-dphy-vdo-xp.ko"
 
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
